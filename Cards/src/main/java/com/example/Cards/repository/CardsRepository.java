@@ -13,5 +13,7 @@ public interface CardsRepository extends JpaRepository<Cards,String> {
 
     Optional<Cards> findCardsByMobileNumber(String mobileNumber);
 
+    Optional<Cards> findCardsByCardNumber(String cardNumber);
+
 
 }

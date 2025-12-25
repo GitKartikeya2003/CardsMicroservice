@@ -62,19 +62,20 @@ public class CardServiceImpl implements ICardsService {
             throw new ResourceNotFoundException("Card not found");
         }
     }
-//
-//    @Override
-//    public CardsDto fetchCard(String mobileNumber) {
-//        return null;
-//    }
-//
-//    @Override
-//    public boolean updateCard(CardsDto cardsDto) {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean deleteCard(String mobileNumber) {
-//        return false;
-//    }
+
+    @Override
+    public boolean updateCard(CardsDto cardsDto) {
+
+        boolean isUpdated = false;
+        if(cardsDto != null ) {
+
+            Cards cards = cardsRepository.findCardsByCardNumber(cardsDto.getCardNumber()).orElseThrow(
+            ()->  new ResourceNotFoundException("Card not found")
+            );
+           Cards cards1= CardsMapper.mapToCards(cards,cardsDto);
+           cardsRepository.save(cards1);
+            isUpdated = true;
+        }
+        return isUpdated;
+    }
 }

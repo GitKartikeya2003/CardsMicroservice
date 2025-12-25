@@ -5,15 +5,12 @@ import com.example.Cards.dto.CardsDto;
 public interface ICardsService {
 
     void createCard(String mobileNumber);
+
     CardsDto fetchCard(String mobileNumber);
 
-//    /**
-//     *
-//     * @param cardsDto - CardsDto Object
-//     * @return boolean indicating if the update of card details is successful or not
-//     */
-//    boolean updateCard(CardsDto cardsDto);
-//
+
+    boolean updateCard(CardsDto cardsDto);
+
 //    /**
 //     *
 //     * @param mobileNumber - Input Mobile Number

@@ -7,13 +7,12 @@ import com.example.Cards.dto.ResponseDto;
 import com.example.Cards.service.ICardsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class CardsController {
 
     @Autowired
@@ -34,5 +33,23 @@ public class CardsController {
         CardsDto dto = cardsService.fetchCard(mobileNumber);
         return ResponseEntity.status(HttpStatus.OK).body(dto);
     }
+
+
+    @PutMapping("/update")
+    public ResponseEntity<ResponseDto> updateCard(@RequestBody CardsDto cardsDto) {
+        boolean cardFound = cardsService.updateCard(cardsDto);
+
+        if (cardFound) {
+
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new ResponseDto(CardsConstants.STATUS_200, CardsConstants.MESSAGE_200));
+
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ResponseDto(CardsConstants.STATUS_500, CardsConstants.MESSAGE_500));
+        }
+
+    }
+
 
 }
