@@ -5,14 +5,8 @@ import com.example.Cards.dto.CardsDto;
 public interface ICardsService {
 
     void createCard(String mobileNumber);
-//
-//    /**
-//     *
-//     * @param mobileNumber - Input mobile Number
-//     *  @return Card Details based on a given mobileNumber
-//     */
-//    CardsDto fetchCard(String mobileNumber);
-//
+    CardsDto fetchCard(String mobileNumber);
+
 //    /**
 //     *
 //     * @param cardsDto - CardsDto Object

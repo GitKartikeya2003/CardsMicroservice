@@ -2,8 +2,11 @@ package com.example.Cards.service.serviceImpl;
 
 
 import com.example.Cards.constants.CardsConstants;
+import com.example.Cards.dto.CardsDto;
 import com.example.Cards.entity.Cards;
 import com.example.Cards.exception.CardAlreadyExistsException;
+import com.example.Cards.exception.ResourceNotFoundException;
+import com.example.Cards.mapper.CardsMapper;
 import com.example.Cards.repository.CardsRepository;
 import com.example.Cards.service.ICardsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +48,19 @@ public class CardServiceImpl implements ICardsService {
         cards.setCardNumber(String.valueOf(randomCardNumber));
         return cards;
 
+    }
+
+    @Override
+    public CardsDto fetchCard(String mobileNumber) {
+
+        Optional<Cards> optionalCards = cardsRepository.findCardsByMobileNumber(mobileNumber);
+        if (optionalCards.isPresent()) {
+            Cards cards = optionalCards.get();
+            return CardsMapper.mapToCardsDto(cards);
+
+        }else {
+            throw new ResourceNotFoundException("Card not found");
+        }
     }
 //
 //    @Override
