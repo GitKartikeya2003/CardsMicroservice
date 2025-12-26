@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @OpenAPIDefinition(     //Swagger part
 		info = @Info(
 				title = "Cards microservice Rest api documentation",
-				description = "EasyBank Cards microservice REST Api documentation",
+				description = "YashBank Cards microservice REST Api documentation",
 				version = "v1",
 				contact = @Contact(
 						name = "Kartikeya Gupta",
