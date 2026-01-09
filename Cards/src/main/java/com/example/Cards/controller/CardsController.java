@@ -2,6 +2,7 @@ package com.example.Cards.controller;
 
 
 import com.example.Cards.constants.CardsConstants;
+import com.example.Cards.dto.CardsContactInfoDto;
 import com.example.Cards.dto.CardsDto;
 import com.example.Cards.dto.ResponseDto;
 import com.example.Cards.service.ICardsService;
@@ -57,11 +58,18 @@ public class CardsController {
         boolean isDeleted = cardsService.deleteCard(mobileNumber);
         if (isDeleted) {
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(CardsConstants.STATUS_200, CardsConstants.MESSAGE_200));
-        }
-        else {
+        } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseDto(CardsConstants.STATUS_500, CardsConstants.MESSAGE_500));
         }
 
+    }
+
+    @Autowired
+    private CardsContactInfoDto cardsContactInfoDto;
+
+    @GetMapping("/contact-info")
+    public ResponseEntity<CardsContactInfoDto> fetchContactInfo() {
+        return ResponseEntity.status(HttpStatus.OK).body(cardsContactInfoDto);
     }
 
 
