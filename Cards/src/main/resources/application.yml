@@ -1,8 +1,14 @@
 server:
   port: 9000
 spring:
+  application:
+    name: "cards"
+  profiles:
+    active: "prod"
+  config:
+    import: "configserver:http://localhost:8071/"
   datasource:
-    name : "Cards"
+    name: "Cards"
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
     username: sa
@@ -15,19 +21,3 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-  config:
-    import:
-      - "application_qa.yml"
-      - "application_prod.yml"
-
-
-build:
-  version: "3.0"
-
-cards:
-  message: "Welcome to Bank Cards related local APIs "
-  contactDetails:
-    name: "Kartikeya Gupta - Developer"
-    email: "kartikeyayash4@gmail.com"
-  onCallSupport:
-    - 8707336016
