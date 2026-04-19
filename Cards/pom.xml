@@ -154,7 +154,7 @@
 				<version>3.5.1</version>
 				<configuration>
 					<to>
-						<image>dockerkartikeya/cards:v6</image>
+						<image>dockerkartikeya/cards:v8</image>
 					</to>
 				</configuration>
 			</plugin>
